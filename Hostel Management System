@@ -1,0 +1,175 @@
+#include <stdio.h>
+#include<string.h>
+struct hos
+    { char name[20];
+     int phno;
+     char address[50];
+     char fathername[50];
+     char sex;
+     char bloodgroup[5];
+     int registrationno;
+     int payment;
+ }s[100];
+
+
+void view();
+void search();
+void delete();
+void add();
+void exit();
+void bill();
+
+
+void menu()
+{ int ch;
+    printf("\n\t\t\t*************************************************");
+    printf("\n\t\t\t **");
+    printf("\n\t\t\t * NOAKHALI SCIENCE & TECHNOLOGY UNIVERSITY *");
+    printf("\n\t\t\t\t\t  Dept. of CSTE");
+    printf("\n\t\t\t **");
+    printf("\n\t\t\t*************************************************");
+    printf( "\n\n\t\t\t\tWELCOME TO MESS MANAGEMENT SYSTEM ");
+    printf("\n\n\t\t\t\t1.ADD NEW STUDENT");
+    printf("\n\n\t\t\t\t2.SEARCH STUDENT INFORMATION");
+    printf("\n\n\t\t\t\t3.REMOVE STUDENT");
+    printf("\n\n\t\t\t\t4.Enter PAYMENT SYSTEM");
+    printf("\n\n\t\t\t\t5.exit ");
+    printf("\n\n\tEnter your choice(1,2,3,4,5)");
+    scanf("%d",&ch);
+    switch(ch)
+    {  case 1: add();
+     menu();
+     break;
+     case 2: search();
+     menu();
+     break;
+     case 3:delete();
+     menu();
+     break;
+     case 4:bill();
+     menu();
+     break;
+     case 5:exit();
+     break;
+    }}
+void bill()
+{
+    int rent,internet,meal,rate,food_cost,servent,electric_bill,gas_bill,q;
+    int total_cost;
+    printf("Enter the cost of Rent per month: ");
+    scanf("%d",&rent);
+    printf("Enter the cost of Internet: ");
+    scanf("%d",&internet);
+    printf("Enter the total meal of the student: ");
+    scanf("%d",&meal);
+    printf("Enter the Rate of per meal: ");
+    scanf("%d",&rate);
+    food_cost=meal*rate;
+    printf("Enter the Servant Bill: ");
+    scanf("%d",&servent);
+    printf("Enter the Electric Bill: ");
+    scanf("%d",&electric_bill);
+    printf("Enter the gas bill: ");
+    scanf("%d",&gas_bill);
+    total_cost= rent+internet+food_cost+servent+electric_bill+gas_bill;
+    printf("\nTotal food cost: %d",food_cost);
+     fflush(stdin);
+     printf("\nTotal Cost: %d\n",total_cost);
+     fflush(stdin);
+     printf("Do U want to return manu? press 1 for yes,0 for exit: ");
+     scanf("%d",&q);
+     if(q==1){
+        menu();
+     }
+     else{
+        exit();
+     }
+
+}
+
+
+
+void search()
+    {int i,regno;
+     char ch;
+    printf("\nEnter the regno no");
+    scanf("%d",&regno);
+    for(i=0;i<100;i++)
+     if(regno==s[i].registrationno)
+     { printf("\n!!!!!!!!RECORD FOUND!!!!!!!!!");
+     printf("\n!NAME:");
+     printf("%s",s[i].name);
+     fflush(stdin);
+     printf("\nPHONE NO:");
+     printf("%d",s[i].phno);
+     fflush(stdin);
+     printf("\nBLOOD GROUP:");
+     fflush(stdin);
+     printf("%s",s[i].bloodgroup);
+     fflush(stdin);
+     printf("\nFATHER NAME:");
+     fflush(stdin);
+     printf("%s",s[i].fathername);
+     printf("\nADDRESS:");
+     printf("s",s[i].address);
+     fflush(stdin);
+     i=100;
+    }
+     else
+     {printf("\nregistration no not matched");
+     menu();
+    }}
+void add()
+    {char ch;
+     int i,q;
+     for( i=0;i<2;i++)
+     {
+     printf("\nEnter the name:");
+     scanf("%s",&s[i].name);
+     fflush(stdin);
+     printf("\nEnter the father's name:");
+     scanf("%s",&s[i].fathername);
+     fflush(stdin);
+     printf("\nEnter the Gender:");
+     scanf("%s",&s[i].sex);
+     fflush(stdin);
+     printf("\nEnter the phone number:");
+     scanf("%d",&s[i].phno);
+     fflush(stdin);
+     printf("\nEnter the address:");
+     scanf("%s",&s[i].address);
+     fflush(stdin);
+     printf("\n\Enter the blood group:");
+     scanf("%s",&s[i].bloodgroup);
+     fflush(stdin);
+     printf("\nEnter the registration no:");
+     scanf("%d",&s[i].registrationno);
+     fflush(stdin);
+     printf("Do you want to add Payment of the student? press 1 for yes..0 for NO");
+     scanf("%d",&q);
+     if(q==1){
+      bill();
+     }
+     printf("\nDo you want to add more record? press y or n");
+     scanf("%c",&ch);
+     if(ch!='y')
+     goto xy;
+     xy:break;
+     }
+    }
+void delete()
+    {int i, regno;
+     char ch;
+    printf ("enter the regno no");
+    scanf ("%d",&regno);
+    for (i=0;i<100;i++)
+     if(regno==s[i].registrationno)
+     { printf("\nyour record is deleted");
+     menu();
+     }
+     }
+void main()
+{
+    menu();
+    }
+
